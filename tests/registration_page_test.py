@@ -4,12 +4,19 @@ from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from pages.registration_page import RegistrationPage
 from time import sleep
+from faker import Faker
+
 
 # DANE TESTOWE
-username = "Iza"
+fake = Faker("es_ES")
+simple_profile = fake.simple_profile()
+username = simple_profile["username"]
+
 valid_password = "qwerty123"
 valid_email = "iza@wp.pl"
 invalid_email = "qwerty.pl"
+
+
 
 class RegistrationPageTest(BaseTest):
     """
