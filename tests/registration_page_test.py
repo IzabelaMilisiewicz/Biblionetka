@@ -5,6 +5,8 @@ from pages.login_page import LoginPage
 from pages.registration_page import RegistrationPage
 from time import sleep
 from faker import Faker
+import openpyxl
+import os
 
 
 # DANE TESTOWE
@@ -12,10 +14,14 @@ fake = Faker("es_ES")
 simple_profile = fake.simple_profile()
 username = simple_profile["username"]
 
+os.chdir("/home/tester/PycharmProjects/Biblionetka/")
+workbook = openpyxl.load_workbook("accounts.xlsx")
+sheet = workbook["Arkusz1"]
+password = sheet["B2"].value
+
 valid_password = "qwerty123"
 valid_email = "iza@wp.pl"
 invalid_email = "qwerty.pl"
-
 
 
 class RegistrationPageTest(BaseTest):
@@ -62,8 +68,8 @@ class RegistrationPageTest(BaseTest):
     def test_incorrect_birth_year(self):
         rp = RegistrationPage(self.driver)
         rp.fill_login(username)
-        rp.fill_password(valid_password)
-        rp.confirm_password(valid_password)
+        rp.fill_password(password)
+        rp.confirm_password(password)
         rp.fill_email(valid_email)
         rp.confirm_email(valid_email)
         rp.fill_birth_year("18")
