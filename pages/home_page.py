@@ -38,9 +38,26 @@ class HomePage(BasePage):
         search_result = self.driver.find_element(*HomePageLocators.HOMO_DEUS_H1)
         print(search_result)
 
-    def check_ranking(self):
-        self.driver.find_element(*HomePageLocators.KATALOG)
+    def check_catalog(self):
+        self.driver.find_element(*HomePageLocators.CATALOG)
         self.driver.find_element(*HomePageLocators.RANKINGI).click()
+
+    def choose_results(self):
+        self.driver.find_element(*HomePageLocators.SHOW).click()
+
+    def choose_often_rated(self):
+        self.driver.find_element(*HomePageLocators.OFTENRATED).click()
+
+    def choose_categories(self):
+        self.driver.find_element(*HomePageLocators.CATEGORIES).click()
+
+    def non_fiction(self):
+        self.driver.find_element(*HomePageLocators.NONFICTION).click()
+
+    def book_content_visible(self):
+        self.driver.find_element(*HomePageLocators.BOOKCONTENT).is_displayed()
+
+
 
 
 
