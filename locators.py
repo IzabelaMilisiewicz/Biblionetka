@@ -34,4 +34,7 @@ class HomePageLocators():
     ACCEPT_PRIVACY = (By.XPATH, '//button[@class =" css-3xxwnt"]')
     SEARCH_ENGINE = (By.ID, 'ctl00_searchPhrase')
     SEARCH_BUTTON = (By.ID, 'ctl00_SearchButton')
-    READ_MORE_HOMO_DEUS = (By.XPATH, '//a[@href="book.aspx?id=505376"]')
+    HOMO_DEUS = (By.XPATH, '//a[@href="book.aspx?id=505376"]')
+    HOMO_DEUS_H1 = (By.TAG_NAME, '//h1')
+    KATALOG = (By.XPATH, '//a[@data-target="#third"]')
+    RANKINGI = (By.XPATH, '//a[@href="stats.aspx"]')
