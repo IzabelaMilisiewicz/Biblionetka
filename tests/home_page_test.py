@@ -1,7 +1,6 @@
 import unittest
 from tests.base_test import BaseTest
 from pages.home_page import HomePage
-
 from time import sleep
 
 book = "Homo Deus"

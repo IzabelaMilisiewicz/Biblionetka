@@ -29,10 +29,10 @@ class HomePage(BasePage):
 
     def search_book(self, book):
         element = self.driver.find_element(*HomePageLocators.SEARCH_ENGINE)
-        # Wpisać w ten input przykładowy tytuł ksiązki
         element.send_keys(book)
         self.driver.find_element(*HomePageLocators.SEARCH_BUTTON).click()
         self.driver.find_element(*HomePageLocators.HOMO_DEUS).click()
+
 
     def book_assertion(self):
         search_result = self.driver.find_element(*HomePageLocators.HOMO_DEUS_H1)
