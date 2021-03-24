@@ -22,6 +22,7 @@ class HomePageTest(BaseTest):
         hp.search_book(book)
         assert "Homo deus: Krótka historia jutra • Harari Noah Yuval • książka - recenzje, opisy, opinie » BiblioNETka.pl" in self.driver.title
 
+    # @unittest.skip("Skipped")
     def test_ranking(self):
         hp = HomePage(self.driver)
         hp.check_catalog()

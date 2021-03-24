@@ -33,7 +33,6 @@ class HomePage(BasePage):
         self.driver.find_element(*HomePageLocators.SEARCH_BUTTON).click()
         self.driver.find_element(*HomePageLocators.HOMO_DEUS).click()
 
-
     def book_assertion(self):
         search_result = self.driver.find_element(*HomePageLocators.HOMO_DEUS_H1)
         print(search_result)
