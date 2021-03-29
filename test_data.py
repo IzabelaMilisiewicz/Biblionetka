@@ -8,7 +8,7 @@ import csv
 from ddt import ddt, data, unpack
 
 
-class MyUtils():
+class TestData(unittest.TestCase):
     fake = Faker("es_ES")
     simple_profile = fake.simple_profile()
     username = simple_profile["username"]
@@ -32,21 +32,3 @@ class MyUtils():
             rows.append(row)
         return rows
 
-    @ddt
-    class MojTestDDT(unittest.TestCase):
-        """
-        Testy oparte na danych: DDT
-
-        Dane pobierane z pliku .csv
-        """
-
-        @data(*get_data("excel_data.csv"))
-        @unpack
-        def test_using_ddt(self, email, password):
-            print("POCZĄTEK TESTU")
-            print(email)
-            print(password)
-            print("KONIEC TESTU\n")
-
-    if __name__ == "__main__":
-        unittest.main(verbosity=2)

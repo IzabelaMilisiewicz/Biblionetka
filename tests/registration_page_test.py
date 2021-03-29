@@ -1,28 +1,16 @@
+import csv
 import unittest
+from pkgutil import get_data
 from tests.base_test import BaseTest
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from pages.registration_page import RegistrationPage
 from time import sleep
-from utils import MyUtils
+from test_data import TestData
+from ddt import ddt, data, unpack
 
-
-# # DANE TESTOWE
-# fake = Faker("es_ES")
-# simple_profile = fake.simple_profile()
-# username = simple_profile["username"]
-#
-# os.chdir("/home/tester/PycharmProjects/Biblionetka/")
-# workbook = openpyxl.load_workbook("accounts.xlsx")
-# sheet = workbook["Arkusz1"]
-# password = sheet["B2"].value
-#
-# valid_password = "qwerty123"
-# valid_email = "iza@wp.pl"
-# invalid_email = "qwerty.pl"
-
-
-class RegistrationPageTest(BaseTest):
+@ddt
+class RegistrationPageTest(BaseTest, TestData):
     """
     Test strony Rejestracji
     """
@@ -43,37 +31,40 @@ class RegistrationPageTest(BaseTest):
         lp.click_register_btn()
 
     # @unittest.skip("Pomijam")
-    def test_wrong_password_during_confirmation(self):
+    @data(*TestData.get_data("excel_data.csv"))
+    @unpack
+    def test_wrong_password_during_confirmation(self, email, password):
         # Stworzenie instancji klasy RegistrationPage (rp)
         rp = RegistrationPage(self.driver)
-        ut = MyUtils()
-        rp.fill_login(ut.username)
-        rp.fill_password(ut.valid_password)
+        td = TestData()
+        rp.fill_login(td.username)
+        rp.fill_password(td.password)
         rp.confirm_password("3")
-        rp.fill_email(" ")
+        rp.fill_email(email)
+        sleep(8)
         # UWAGA TEST!
         rp.verify_visible_errors(1, ["Hasło i potwierdzenie hasła muszą być takie same."])
 
     @unittest.skip("Pomijam")
     def test_incorrect_email(self):
         rp = RegistrationPage(self.driver)
-        ut = MyUtils()
-        rp.fill_login(ut.username)
-        rp.fill_password(ut.valid_password)
-        rp.confirm_password(ut.valid_password)
-        rp.fill_email(ut.invalid_email)
+        td = TestData()
+        rp.fill_login(td.username)
+        rp.fill_password(td.valid_password)
+        rp.confirm_password(td.valid_password)
+        rp.fill_email(td.invalid_email)
         rp.confirm_email(" ")
         rp.verify_visible_errors(1, ["Podaj prawidłowy adres email!"])
 
     @unittest.skip("Pomijam")
     def test_incorrect_birth_year(self):
         rp = RegistrationPage(self.driver)
-        ut = MyUtils()
-        rp.fill_login(ut.username)
-        rp.fill_password(ut.password)
-        rp.confirm_password(ut.password)
-        rp.fill_email(ut.valid_email)
-        rp.confirm_email(ut.valid_email)
+        td = TestData()
+        rp.fill_login(td.username)
+        rp.fill_password(td.password)
+        rp.confirm_password(td.password)
+        rp.fill_email(td.valid_email)
+        rp.confirm_email(td.valid_email)
         rp.fill_birth_year("18")
         rp.choose_gender_female()
         rp.verify_visible_errors(1, ["* Niepoprawny rok urodzenia"])
