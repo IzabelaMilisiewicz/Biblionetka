@@ -1,12 +1,8 @@
-from pkgutil import get_data
-from struct import unpack
 from faker import Faker
 import openpyxl
 import os
 import unittest
 import csv
-from ddt import ddt, data, unpack
-
 
 class TestData(unittest.TestCase):
     fake = Faker("es_ES")

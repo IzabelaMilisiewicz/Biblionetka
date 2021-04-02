@@ -1,6 +1,4 @@
-import csv
 import unittest
-from pkgutil import get_data
 from tests.base_test import BaseTest
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
@@ -8,6 +6,7 @@ from pages.registration_page import RegistrationPage
 from time import sleep
 from test_data import TestData
 from ddt import ddt, data, unpack
+from utils import VerifyErrors
 
 @ddt
 class RegistrationPageTest(BaseTest, TestData):
@@ -37,29 +36,31 @@ class RegistrationPageTest(BaseTest, TestData):
         # Stworzenie instancji klasy RegistrationPage (rp)
         rp = RegistrationPage(self.driver)
         td = TestData()
+        ut = VerifyErrors(self.driver)
         rp.fill_login(td.username)
         rp.fill_password(td.password)
         rp.confirm_password("3")
         rp.fill_email(email)
-        sleep(8)
         # UWAGA TEST!
-        rp.verify_visible_errors(1, ["Hasło i potwierdzenie hasła muszą być takie same."])
+        ut.verify_visible_errors(1, ["Hasło i potwierdzenie hasła muszą być takie same."])
 
     @unittest.skip("Pomijam")
     def test_incorrect_email(self):
         rp = RegistrationPage(self.driver)
         td = TestData()
+        ut = VerifyErrors(self.driver)
         rp.fill_login(td.username)
         rp.fill_password(td.valid_password)
         rp.confirm_password(td.valid_password)
         rp.fill_email(td.invalid_email)
         rp.confirm_email(" ")
-        rp.verify_visible_errors(1, ["Podaj prawidłowy adres email!"])
+        ut.verify_visible_errors(1, ["Podaj prawidłowy adres email!"])
 
     @unittest.skip("Pomijam")
     def test_incorrect_birth_year(self):
         rp = RegistrationPage(self.driver)
         td = TestData()
+        ut = VerifyErrors(self.driver)
         rp.fill_login(td.username)
         rp.fill_password(td.password)
         rp.confirm_password(td.password)
@@ -67,7 +68,7 @@ class RegistrationPageTest(BaseTest, TestData):
         rp.confirm_email(td.valid_email)
         rp.fill_birth_year("18")
         rp.choose_gender_female()
-        rp.verify_visible_errors(1, ["* Niepoprawny rok urodzenia"])
+        ut.verify_visible_errors(1, ["* Niepoprawny rok urodzenia"])
 
     sleep(10)
     if __name__ == "__main__":
