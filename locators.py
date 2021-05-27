@@ -1,11 +1,5 @@
 from selenium.webdriver.common.by import By
 
-class HomePageLocators():
-    """
-    Lokatory strony głównej
-    """
-    ZALOGUJ_BTN = (By.XPATH, "//div[@class='down__item login__menu__item']")
-
 class LoginPageLocators():
     """
     Lokatory strony logowania
@@ -31,7 +25,7 @@ class HomePageLocators():
     Lokatory strony głównej
     """
     ZALOGUJ_BTN = (By.XPATH, '//div[@class="down__item login__menu__item"]')
-    ACCEPT_PRIVACY = (By.XPATH, '//button[@class =" css-3xxwnt"]')
+    ACCEPT_PRIVACY = (By.XPATH, '//button[@class =" css-b5w9vk"]')
     SEARCH_ENGINE = (By.ID, 'ctl00_searchPhrase')
     SEARCH_BUTTON = (By.ID, 'ctl00_SearchButton')
     HOMO_DEUS = (By.XPATH, '//a[@href="book.aspx?id=505376"]')

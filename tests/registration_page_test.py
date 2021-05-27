@@ -44,7 +44,7 @@ class RegistrationPageTest(BaseTest, TestData):
         # UWAGA TEST!
         ut.verify_visible_errors(1, ["Hasło i potwierdzenie hasła muszą być takie same."])
 
-    @unittest.skip("Pomijam")
+    # @unittest.skip("Pomijam")
     def test_incorrect_email(self):
         rp = RegistrationPage(self.driver)
         td = TestData()
@@ -56,7 +56,7 @@ class RegistrationPageTest(BaseTest, TestData):
         rp.confirm_email(" ")
         ut.verify_visible_errors(1, ["Podaj prawidłowy adres email!"])
 
-    @unittest.skip("Pomijam")
+    # @unittest.skip("Pomijam")
     def test_incorrect_birth_year(self):
         rp = RegistrationPage(self.driver)
         td = TestData()
@@ -70,6 +70,5 @@ class RegistrationPageTest(BaseTest, TestData):
         rp.choose_gender_female()
         ut.verify_visible_errors(1, ["* Niepoprawny rok urodzenia"])
 
-    sleep(10)
     if __name__ == "__main__":
         unittest.main(verbosity=2)

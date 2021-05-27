@@ -9,7 +9,7 @@ class TestData(unittest.TestCase):
     simple_profile = fake.simple_profile()
     username = simple_profile["username"]
 
-    os.chdir("/home/tester/PycharmProjects/Biblionetka/")
+    os.chdir("/home/tester/Dokumenty/Biblionetka/")
     workbook = openpyxl.load_workbook("accounts.xlsx")
     sheet = workbook["Arkusz1"]
     password = sheet["B2"].value
