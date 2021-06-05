@@ -4,6 +4,7 @@ from locators import HomePageLocators
 # teraz pobieramy exclipit wait, zawsze te 2 linie pobieramy w parzee
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from time import sleep
 
 class HomePage(BasePage):
     """
@@ -11,6 +12,7 @@ class HomePage(BasePage):
     """
 
     def accept_privacy_btn(self):
+        sleep(1)
         wait = WebDriverWait(self.driver, 60)
         wait.until(EC.presence_of_element_located(HomePageLocators.ACCEPT_PRIVACY)).click()
 

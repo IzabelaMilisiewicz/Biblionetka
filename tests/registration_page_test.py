@@ -27,6 +27,7 @@ class RegistrationPageTest(BaseTest, TestData):
         # Stworzenie instancji klasy LoginPage (lp)
         lp = LoginPage(self.driver)
         # Użycie metody click_register_btn zawartej w obiekcie lp klasy LoginPage
+        sleep(1)
         lp.click_register_btn()
 
     # @unittest.skip("Pomijam")
